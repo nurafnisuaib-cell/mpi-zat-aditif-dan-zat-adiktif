@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zat Aditif dan Adiktif - MPI</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 700: '#047857', 800: '#065f46', 900: '#064e3b' },
+                        gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+                        ivory: { DEFAULT: '#FFFFF0', 100: '#FDFCF0', 200: '#F8F6E3', 300: '#F0EAD6' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        arabic: ['Amiri', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PDF Generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        /* Custom Styles & Animations */
+        body { -webkit-tap-highlight-color: transparent; }
+        
+        /* Animated Gradient Background */
+        .bg-gradient-animated {
+            background: linear-gradient(120deg, #ecfdf5, #FFFFF0, #d1fae5, #F8F6E3);
+            background-size: 300% 300%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Aesthetic Glassmorphism Theme */
+        .glass-panel {
+            background: rgba(255, 255, 240, 0.65); /* Ivory Tint */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.2);
+        }
+        .glass-dark {
+            background: rgba(6, 95, 70, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Animated Aesthetic Background Orbs */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            animation: orbFloat 15s ease-in-out infinite alternate;
+        }
+        .orb-1 { width: 50vw; height: 50vw; background: rgba(16, 185, 129, 0.4); top: -20%; left: -10%; } /* Emerald 500 */
+        .orb-2 { width: 45vw; height: 45vw; background: rgba(255, 255, 240, 0.9); bottom: -10%; right: -10%; animation-delay: -5s; } /* Ivory */
+        .orb-3 { width: 40vw; height: 40vw; background: rgba(4, 120, 87, 0.3); top: 30%; left: 40%; animation-delay: -10s; } /* Emerald 700 */
+        
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(5vw, 5vh) scale(1.1) rotate(180deg); }
+            100% { transform: translate(-5vw, 10vh) scale(0.9) rotate(360deg); }
+        }
+
+        /* Wave Animation CSS */
+        .wave-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .waves {
+            position: relative;
+            width: 100%;
+            height: 15vh;
+            min-height: 100px;
+            max-height: 150px;
+        }
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+        }
+        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+        
+        @keyframes move-forever {
+            0% { transform: translate3d(-90px,0,0); }
+            100% { transform: translate3d(85px,0,0); }
+        }
+
+        .fade-in { animation: fadeIn 0.5s ease-in forwards; }
+        .slide-up { animation: slideUp 0.5s ease-out forwards; }
+        .floating { animation: float 3s ease-in-out infinite; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        
+        /* Animasi Gelembung Zat */
+        @keyframes bubbleUp { 
+            0% { transform: translateY(0) scale(1); opacity: 0.8; } 
+            100% { transform: translateY(-60px) scale(1.5); opacity: 0; } 
+        }
+        .bubble-anim { animation: bubbleUp 2s ease-in-out infinite; }
+        
+        /* Modal Backdrop Blur */
+        .modal-backdrop { backdrop-filter: blur(5px); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #059669; }
+
+        .hidden-screen { display: none !important; }
+
+        /* Print styles */
+        @media print {
+            body * { visibility: hidden; }
+            #report-content, #report-content * { visibility: visible; }
+            #report-content { position: absolute; left: 0; top: 0; width: 100%; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-animated text-gray-800 font-sans overflow-x-hidden min-h-screen relative selection:bg-emerald-200">
+
+    <!-- AESTHETIC EMERALD & IVORY ANIMATED BACKGROUND -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <!-- Floating Orbs -->
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+        
+        <!-- Animated Waves -->
+        <div class="wave-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 240, 0.7)" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(16, 185, 129, 0.4)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(240, 234, 214, 0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(5, 150, 105, 0.8)" />
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <!-- APP CONTAINER -->
+    <div id="app" class="w-full min-h-screen flex flex-col relative z-10">
+
+        <!-- 1. SPLASH SCREEN -->
+        <div id="screen-splash" class="fixed inset-0 glass-dark z-50 flex flex-col items-center justify-center text-white transition-opacity duration-500">
+            <i class="fas fa-flask text-6xl mb-4 floating text-gold-400 drop-shadow-lg"></i>
+            <h1 class="text-4xl font-extrabold tracking-wider drop-shadow-md">M-P-I</h1>
+            <p class="text-emerald-100 mt-2 font-medium tracking-wide">Zat Aditif & Adiktif</p>
+            <div class="mt-8 w-12 h-12 border-4 border-emerald-400 border-t-white rounded-full animate-spin"></div>
+        </div>
+
+        <!-- 2. COVER SCREEN -->
+        <div id="screen-cover" class="hidden-screen min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
+            
+            <div class="z-10 text-center text-gray-800 slide-up max-w-lg w-full glass-panel p-10 rounded-[2.5rem]">
+                <span class="inline-block py-1.5 px-4 rounded-full bg-emerald-100 text-emerald-800 text-sm font-bold mb-4 border border-emerald-200 shadow-sm">IPA / Kelas VIII / Fase D</span>
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-emerald-900 drop-shadow-sm leading-tight">Zat Aditif dan Adiktif</h1>
+                
+                <!-- Animasi Zat Aditif & Adiktif -->
+                <div class="my-10 flex justify-center relative w-full h-56 md:h-64 items-center">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-emerald-300 to-gold-300 rounded-full blur-3xl opacity-40 animate-pulse"></div>
+                    
+                    <div class="relative w-full max-w-[250px] aspect-square flex items-center justify-center z-10">
+                        <div class="absolute z-20 text-emerald-600 drop-shadow-xl flex flex-col items-center floating">
+                            <div class="relative">
+                                <i class="fas fa-flask text-7xl md:text-8xl"></i>
+                                <div class="absolute -top-10 left-0 w-full h-full pointer-events-none">
+                                    <div class="bubble-anim w-3 h-3 bg-emerald-400 rounded-full absolute bottom-4 left-1/4" style="animation-delay: 0s;"></div>
+                                    <div class="bubble-anim w-2 h-2 bg-teal-300 rounded-full absolute bottom-6 right-1/4" style="animation-delay: 0.5s;"></div>
+                                    <div class="bubble-anim w-4 h-4 bg-gold-400 rounded-full absolute bottom-2 left-1/2" style="animation-delay: 1.2s;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-2 right-2 floating" style="animation-delay: 0.3s; z-index: 25;">
+                            <div class="w-14 h-14 bg-white/90 backdrop-blur-md rounded-full shadow-lg border-2 border-pink-100 flex items-center justify-center text-pink-500 text-2xl">
+                                <i class="fas fa-candy-cane"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 right-0 floating" style="animation-delay: 1.1s; z-index: 25;">
+                            <div class="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg border-2 border-emerald-100 flex items-center justify-center text-emerald-500 text-xl">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-6 left-0 floating" style="animation-delay: 0.7s; z-index: 25;">
+                            <div class="w-14 h-14 bg-white/90 backdrop-blur-md rounded-full shadow-lg border-2 border-amber-100 flex items-center justify-center text-amber-700 text-2xl">
+                                <i class="fas fa-mug-hot"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-8 left-2 floating" style="animation-delay: 1.5s; z-index: 25;">
+                            <div class="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg border-2 border-red-100 flex items-center justify-center text-red-500 text-xl">
+                                <i class="fas fa-capsule"></i>
+                            </div>
+                        </div>
+
+                        <div class="absolute inset-0 animate-[spin_10s_linear_infinite] pointer-events-none opacity-40">
+                            <i class="fas fa-atom text-5xl text-teal-600 absolute -top-4 left-1/2 transform -translate-x-1/2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 w-full">
+                    <button onclick="openModal('modal-info')" class="w-full py-3.5 bg-white/40 hover:bg-white/60 border border-white/60 shadow-sm rounded-2xl font-bold text-emerald-800 transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
+                        <i class="fas fa-user-tie"></i> Informasi Pengembang
+                    </button>
+                    <button onclick="openModal('modal-obj')" class="w-full py-3.5 bg-white/40 hover:bg-white/60 border border-white/60 shadow-sm rounded-2xl font-bold text-emerald-800 transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
+                        <i class="fas fa-bullseye"></i> Tujuan Pembelajaran
+                    </button>
+                    <button onclick="nav('screen-form')" class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-extrabold text-lg shadow-xl hover:shadow-emerald-500/40 transition-all hover:scale-105 mt-2">
+                        MULAI SEKARANG <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. FORM IDENTITAS -->
+        <div id="screen-form" class="hidden-screen min-h-screen flex items-center justify-center p-6 bg-transparent">
+            <div class="glass-panel p-10 rounded-[2.5rem] w-full max-w-md slide-up shadow-2xl">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-white/60 backdrop-blur-sm border border-white rounded-full flex items-center justify-center mx-auto mb-5 text-emerald-600 text-3xl shadow-sm">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-emerald-900">Identitas Diri</h2>
+                    <p class="text-emerald-700 font-medium mt-2">Silakan isi data untuk memulai</p>
+                </div>
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-bold text-emerald-800 mb-1.5 ml-1">Nama Lengkap</label>
+                        <input type="text" id="input-name" class="w-full px-5 py-3.5 rounded-2xl bg-white/70 backdrop-blur-sm border border-white/80 shadow-inner focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all font-medium text-gray-800" placeholder="Masukkan nama...">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-emerald-800 mb-1.5 ml-1">Kelas</label>
+                        <select id="input-class" class="w-full px-5 py-3.5 rounded-2xl bg-white/70 backdrop-blur-sm border border-white/80 shadow-inner focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all font-medium text-gray-800">
+                            <option value="">Pilih Kelas...</option>
+                            <option value="VIII A">VIII A</option>
+                            <option value="VIII B">VIII B</option>
+                            <option value="VIII C">VIII C</option>
+                            <option value="VIII D">VIII D</option>
+                        </select>
+                    </div>
+                    <div id="form-error" class="text-red-500 bg-red-100/80 rounded-lg py-2 text-sm hidden text-center font-bold backdrop-blur-sm border border-red-200">Mohon lengkapi nama dan kelas!</div>
+                    <button onclick="submitForm()" class="w-full py-4 mt-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-bold shadow-xl hover:shadow-emerald-600/40 transition-all text-lg">
+                        Lanjutkan <i class="fas fa-check ml-1"></i>
+                    </button>
+                    <button onclick="nav('screen-cover')" class="w-full py-2 mt-2 text-emerald-700 hover:text-emerald-900 font-bold text-sm transition-colors">
+                        Kembali ke Cover
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. PENGANTAR & PANDUAN -->
+        <div id="screen-guide" class="hidden-screen min-h-screen flex flex-col p-6 bg-transparent">
+            <div class="max-w-2xl w-full mx-auto flex-1 flex flex-col justify-center">
+                <div class="glass-panel rounded-[2.5rem] shadow-2xl overflow-hidden slide-up relative border-2 border-white/60">
+                    <div class="h-2 w-full bg-white/30"><div id="guide-progress" class="h-full bg-emerald-500 transition-all duration-500 w-1/3 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div></div>
+                    
+                    <div class="p-10 text-center" id="guide-content"></div>
+
+                    <div class="p-5 bg-white/40 backdrop-blur-md border-t border-white/50 flex justify-between items-center">
+                        <button id="btn-guide-prev" onclick="changeGuide(-1)" class="px-4 py-2 text-gray-500 hover:text-emerald-600 font-medium invisible">Kembali</button>
+                        <div class="flex gap-1" id="guide-dots">
+                            <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                            <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+                            <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+                        </div>
+                        <button id="btn-guide-next" onclick="changeGuide(1)" class="px-5 py-2.5 bg-emerald-500 text-white shadow-md rounded-xl font-bold hover:bg-emerald-600 transition-all">Selanjutnya</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. MAIN MENU DASHBOARD -->
+        <div id="screen-menu" class="hidden-screen min-h-screen flex flex-col bg-transparent">
+            <header class="glass-dark text-white p-6 rounded-b-[2.5rem] shadow-xl sticky top-0 z-20 border-b border-white/20">
+                <div class="max-w-4xl mx-auto flex justify-between items-center px-2">
+                    <div>
+                        <p class="text-emerald-100 text-sm font-medium tracking-wide">Selamat Datang,</p>
+                        <h2 class="text-2xl font-extrabold drop-shadow-md" id="display-student-name">Siswa</h2>
+                        <p class="text-sm bg-white/20 backdrop-blur-sm border border-white/30 inline-block px-3 py-1 rounded-full mt-1.5 font-semibold" id="display-student-class">Kelas</p>
+                    </div>
+                    <div class="text-right">
+                        <img src="https://iili.io/CSAHRQ1.png" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=NS&background=0D8ABC&color=fff';" alt="Avatar" class="w-14 h-14 rounded-full border-2 border-white/80 shadow-lg object-cover">
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex-1 max-w-5xl mx-auto w-full p-6 mt-6">
+                <h3 class="text-2xl font-extrabold text-emerald-900 mb-8 text-center drop-shadow-sm animate-pulse">Jalur Pembelajaran</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div id="card-belajar" onclick="startModule('belajar')" class="glass-panel p-8 rounded-[2rem] cursor-pointer hover:shadow-2xl transition-all transform hover:-translate-y-2 relative overflow-hidden border-l-4 border-l-emerald-500">
+                        <div class="w-20 h-20 bg-ivory-100 shadow-sm border border-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mb-6 backdrop-blur-sm floating">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-emerald-900 mb-3">1. BELAJAR</h4>
+                        <p class="text-sm text-gray-700 font-medium leading-relaxed">Pahami konsep, integrasi nilai Islam, dan kearifan lokal Gorontalo.</p>
+                        <div class="mt-6 flex items-center justify-between">
+                            <span class="text-xs font-bold px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 shadow-sm"><i class="fas fa-unlock mr-1"></i> Terbuka</span>
+                            <span id="prog-belajar" class="text-base font-black text-emerald-600 bg-white/50 px-3 py-1 rounded-lg">0/6</span>
+                        </div>
+                    </div>
+
+                    <div id="card-berlatih" onclick="startModule('berlatih')" class="glass-panel p-8 rounded-[2rem] cursor-pointer transition-all relative overflow-hidden opacity-80 grayscale hover:grayscale-0">
+                        <div class="absolute top-0 right-0 p-5 text-emerald-800/40" id="lock-icon-berlatih"><i class="fas fa-lock text-2xl floating"></i></div>
+                        <div class="w-20 h-20 bg-white/40 shadow-sm border border-white/50 text-gray-500 rounded-full flex items-center justify-center text-4xl mb-6 backdrop-blur-sm" id="icon-bg-berlatih">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-gray-800 mb-3">2. BERLATIH</h4>
+                        <p class="text-sm text-gray-600 font-medium leading-relaxed">Uji pemahaman dasarmu sebelum masuk ke tahap bermain.</p>
+                        <div class="mt-6 flex items-center justify-between">
+                            <span id="status-berlatih" class="text-xs font-bold px-3 py-1.5 rounded-full bg-white/50 text-gray-600 border border-gray-200">Terkunci</span>
+                            <span id="prog-berlatih" class="text-base font-black text-gray-500 bg-white/50 px-3 py-1 rounded-lg">0/5</span>
+                        </div>
+                    </div>
+
+                    <div id="card-bermain" onclick="startModule('bermain')" class="glass-panel p-8 rounded-[2rem] cursor-pointer transition-all relative overflow-hidden opacity-80 grayscale hover:grayscale-0">
+                        <div class="absolute top-0 right-0 p-5 text-emerald-800/40" id="lock-icon-bermain"><i class="fas fa-lock text-2xl floating"></i></div>
+                        <div class="w-20 h-20 bg-white/40 shadow-sm border border-white/50 text-gray-500 rounded-full flex items-center justify-center text-4xl mb-6 backdrop-blur-sm" id="icon-bg-bermain">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-gray-800 mb-3">3. BERMAIN</h4>
+                        <p class="text-sm text-gray-600 font-medium leading-relaxed">Tantangan interaktif literasi & numerasi.</p>
+                        <div class="mt-6 flex items-center justify-between">
+                            <span id="status-bermain" class="text-xs font-bold px-3 py-1.5 rounded-full bg-white/50 text-gray-600 border border-gray-200">Terkunci</span>
+                            <span id="prog-bermain" class="text-base font-black text-gray-500 bg-white/50 px-3 py-1 rounded-lg">0/10</span>
+                        </div>
+                    </div>
+
+                    <div id="card-asesmen" onclick="startModule('asesmen')" class="glass-panel p-8 rounded-[2rem] cursor-pointer transition-all relative overflow-hidden opacity-80 grayscale hover:grayscale-0">
+                        <div class="absolute top-0 right-0 p-5 text-emerald-800/40" id="lock-icon-asesmen"><i class="fas fa-lock text-2xl floating"></i></div>
+                        <div class="w-20 h-20 bg-white/40 shadow-sm border border-white/50 text-gray-500 rounded-full flex items-center justify-center text-4xl mb-6 backdrop-blur-sm" id="icon-bg-asesmen">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-gray-800 mb-3">4. ASESMEN</h4>
+                        <p class="text-sm text-gray-600 font-medium leading-relaxed">Asesmen berjenjang berbasis HOTS.</p>
+                        <div class="mt-6 flex items-center justify-between">
+                            <span id="status-asesmen" class="text-xs font-bold px-3 py-1.5 rounded-full bg-white/50 text-gray-600 border border-gray-200">Terkunci</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <div id="card-referensi" onclick="openModal('modal-referensi')" class="glass-panel p-6 md:p-8 rounded-[2rem] cursor-pointer hover:shadow-2xl transition-all transform hover:-translate-y-1 relative overflow-hidden border-l-4 border-l-blue-500 flex items-center gap-6">
+                        <div class="w-16 h-16 bg-ivory-100 shadow-sm border border-blue-100 text-blue-600 rounded-full flex items-center justify-center text-3xl flex-shrink-0">
+                            <i class="fas fa-book floating"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-extrabold text-blue-900 mb-2">5. REFERENSI</h4>
+                            <p class="text-sm text-gray-700 font-medium">Daftar pustaka dan sumber belajar yang digunakan dalam aplikasi ini.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-10 text-center" id="report-btn-container" style="display:none;">
+                    <button onclick="nav('screen-report')" class="px-8 py-4 bg-emerald-600 text-white rounded-2xl font-extrabold shadow-xl hover:bg-emerald-700 hover:shadow-emerald-600/40 animate-pulse transition-all">
+                        <i class="fas fa-file-pdf mr-2"></i> Lihat Laporan Hasil Belajar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. MODULE CONTAINER -->
+        <div id="screen-module" class="hidden-screen min-h-screen flex flex-col bg-transparent">
+            <div class="glass-dark text-white p-4 flex justify-between items-center shadow-lg sticky top-0 z-30 border-b border-white/20">
+                <button onclick="confirmExit()" class="w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 border border-white/30 flex items-center justify-center transition-all backdrop-blur-sm text-lg">
+                    <i class="fas fa-home"></i>
+                </button>
+                <h2 id="module-title" class="text-xl font-extrabold text-center flex-1 mx-4 truncate tracking-wide drop-shadow-sm">Modul</h2>
+                <div id="module-progress" class="text-sm font-bold bg-white/20 border border-white/30 px-4 py-2 rounded-full backdrop-blur-sm shadow-inner">1/10</div>
+            </div>
+
+            <div id="module-content" class="flex-1 overflow-y-auto p-4 md:p-8 max-w-4xl mx-auto w-full relative pb-24 z-20">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <!-- 7. REPORT SCREEN -->
+        <div id="screen-report" class="hidden-screen min-h-screen bg-transparent p-4 md:p-8 flex justify-center items-start relative z-20">
+            <div class="w-full max-w-3xl flex flex-col gap-6">
+                <div class="flex justify-between items-center no-print">
+                    <button onclick="nav('screen-menu')" class="px-5 py-3 glass-panel text-emerald-800 rounded-xl shadow-sm hover:bg-white/60 font-bold transition-all border border-white/80">
+                        <i class="fas fa-arrow-left mr-2"></i> Kembali
+                    </button>
+                    <button onclick="printReport()" class="px-5 py-3 bg-emerald-600 text-white rounded-xl shadow-lg hover:bg-emerald-700 font-bold transition-all">
+                        <i class="fas fa-print mr-2"></i> Cetak / Unduh PDF
+                    </button>
+                </div>
+
+                <div id="report-content" class="glass-panel bg-white/90 p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative overflow-hidden border border-white/80">
+                    <div class="absolute top-0 right-0 opacity-5 pointer-events-none no-print">
+                        <i class="fas fa-leaf text-[15rem] text-emerald-500 rotate-45 transform translate-x-1/4 -translate-y-1/4"></i>
+                    </div>
+                    
+                    <div class="border-b-4 border-emerald-800 pb-5 mb-8 text-center flex flex-col items-center relative z-10">
+                    <div class="mb-6 grid grid-cols-2 gap-4 text-sm md:text-base border-b pb-4 w-full">
+                        <div><span class="font-semibold text-gray-600">Nama Siswa:</span> <span id="rep-name" class="font-bold text-gray-800"></span></div>
+                        <div><span class="font-semibold text-gray-600">Kelas:</span> <span id="rep-class" class="font-bold text-gray-800"></span></div>
+                        <div><span class="font-semibold text-gray-600">Tanggal:</span> <span id="rep-date" class="font-bold text-gray-800"></span></div>
+                        <div><span class="font-semibold text-gray-600">Mata Pelajaran:</span> <span class="font-bold text-gray-800">Ilmu Pengetahuan Alam</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 w-full">
+                        <div class="bg-gray-50 p-4 rounded-lg border text-left">
+                            <h4 class="font-bold text-emerald-700 mb-2 border-b pb-1"><i class="fas fa-gamepad"></i> Capaian Literasi (Bermain)</h4>
+                            <p class="text-3xl font-bold text-gray-800" id="rep-play-score">0 <span class="text-base font-normal text-gray-500">Tantangan Diselesaikan</span></p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200 text-left">
+                            <h4 class="font-bold text-emerald-700 mb-2 border-b pb-1"><i class="fas fa-pen-nib"></i> Nilai Akhir Asesmen</h4>
+                            <div class="flex items-end gap-2">
+                                <span class="text-5xl font-black text-emerald-600" id="rep-quiz-score">0</span>
+                                <span class="text-xl font-bold text-gray-600 mb-1" id="rep-predicate">/ 100 (Kurang)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 w-full text-left">
+                        <h4 class="font-bold text-gray-800 mb-3 border-b pb-1">Analisis Penguasaan Level Kognitif:</h4>
+                        <ul class="space-y-2 text-sm md:text-base">
+                            <li class="flex justify-between bg-gray-50 p-2 rounded"><span>Level 1 (Dasar/Pemahaman):</span> <span id="rep-l1" class="font-bold"></span></li>
+                            <li class="flex justify-between bg-gray-50 p-2 rounded"><span>Level 2 (Penerapan):</span> <span id="rep-l2" class="font-bold"></span></li>
+                            <li class="flex justify-between bg-yellow-50 p-2 rounded"><span>Level 3 (HOTS/Penalaran):</span> <span id="rep-l3" class="font-bold text-yellow-700"></span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-sm text-gray-700 mb-6 italic w-full text-left">
+                        <i class="fas fa-quote-left text-blue-300 mr-2"></i>
+                        <span id="rep-kbc-note">Siswa telah mempelajari materi dengan mengintegrasikan nilai cinta kepada Allah, lingkungan, dan kearifan lokal. Jauhi zat adiktif dan pilihlah bahan makanan yang thoyyib.</span>
+                    </div>
+
+                    <div class="mt-12 flex justify-end text-center w-full">
+                        <div>
+                            <p class="mb-16">Tilamuta, <span class="date-today"></span><br>Guru Mata Pelajaran</p>
+                            <p class="font-bold underline decoration-1 underline-offset-4">Nur'afni Suaib, S.Pd</p>
+                            <p class="text-sm text-gray-500">NIP. -</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- END APP -->
+
+    <!-- FLOATING MODALS -->
+    
+    <div id="modal-alert" class="fixed inset-0 z-[100] modal-backdrop flex items-center justify-center hidden-screen px-4">
+        <div class="glass-panel bg-white/80 rounded-[2.5rem] shadow-2xl p-8 max-w-sm w-full transform scale-95 transition-transform border border-white/80" id="alert-box">
+            <div class="text-center">
+                <div class="w-20 h-20 rounded-full bg-red-100/80 text-red-500 flex items-center justify-center text-4xl mx-auto mb-6 shadow-inner border border-red-200" id="alert-icon"><i class="fas fa-lock"></i></div>
+                <h3 class="text-2xl font-extrabold text-gray-800 mb-2" id="alert-title">Terkunci</h3>
+                <p class="text-gray-600 mb-8 font-medium" id="alert-msg">Selesaikan tahap sebelumnya terlebih dahulu.</p>
+                <button onclick="closeModal('modal-alert')" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg rounded-xl font-bold transition-all text-lg">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-info" class="fixed inset-0 z-[60] modal-backdrop flex items-center justify-center hidden-screen px-4">
+        <div class="glass-panel rounded-[2.5rem] shadow-2xl w-full max-w-md slide-up overflow-hidden border border-white/80">
+            <div class="glass-dark p-5 text-white text-center font-bold tracking-wider text-lg">Informasi Pengembang</div>
+            <div class="p-8 text-center bg-white/40 backdrop-blur-sm">
+                <img src="https://iili.io/CSAHRQ1.png" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Nurafni+Suaib&background=10b981&color=fff&size=150';" class="w-36 h-36 rounded-full mx-auto border-4 border-white/80 shadow-xl mb-6 object-cover" alt="Nur'afni Suaib">
+                <h2 class="text-2xl font-extrabold text-emerald-900">Nur'afni Suaib, S.Pd</h2>
+                <p class="text-emerald-700 font-bold mt-2 mb-2"><i class="fas fa-school mr-1"></i> MTs Alkhairaat Tilamuta</p>
+                <p class="text-gray-700 font-medium text-sm mb-8"><i class="fas fa-envelope mr-1"></i> nurafnisuaib@gmail.com</p>
+                <button onclick="closeModal('modal-info')" class="w-full py-3.5 bg-white/60 text-emerald-900 hover:bg-white/80 rounded-xl font-bold shadow-sm border border-white transition-all">Kembali ke Cover</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-obj" class="fixed inset-0 z-[60] modal-backdrop flex items-center justify-center hidden-screen px-4 py-8">
+        <div class="glass-panel rounded-[2.5rem] shadow-2xl w-full max-w-lg slide-up overflow-hidden max-h-full flex flex-col border border-white/80">
+            <div class="glass-dark p-5 text-white text-center font-bold tracking-wider text-lg flex-shrink-0">Tujuan & Nilai Pembelajaran</div>
+            <div class="p-8 overflow-y-auto flex-1 text-sm md:text-base space-y-6 bg-white/40 backdrop-blur-sm">
+                <div>
+                    <h3 class="font-extrabold text-emerald-900 border-l-4 border-emerald-500 pl-3 mb-3">Tujuan Pembelajaran</h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1.5 font-medium">
+                        <li>Menjelaskan perbedaan zat aditif dan adiktif.</li>
+                        <li>Mengelompokan contoh zat aditif berdasarkan fungsi dan sumbernya.</li>
+                        <li>Menganalisis informasi label pangan secara kritis.</li>
+                        <li>Menjelaskan resiko zat adiktif dan cara menghindarinya.</li>
+                    </ul>
+                </div>
+                <div class="bg-white/60 backdrop-blur-md p-5 rounded-2xl border border-white/80 shadow-sm">
+                    <p class="font-arabic text-2xl text-right mb-3 leading-loose text-emerald-900">يَا أَيُّهَا النَّاسُ كُلُوا مِمَّا فِي الْأَرْضِ حَلَالًا طَيِّبًا...</p>
+                    <p class="text-gray-700 text-sm italic font-medium">"Hai sekalian manusia, makanlah yang halal lagi baik dari apa yang terdapat di bumi..." (QS. Al-Baqarah: 168)</p>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-emerald-900 border-l-4 border-emerald-500 pl-3 mb-3">Kurikulum Berbasis Cinta (KBC)</h3>
+                    <p class="text-gray-700 font-medium leading-relaxed">Menumbuhkan rasa cinta kepada Allah dengan menjaga titipan tubuh (menghindari zat merusak), cinta lingkungan hidup, serta mencintai sesama dan tanah air dengan melestarikan sumber daya lokal yang thoyyib.</p>
+                </div>
+            </div>
+            <div class="p-6 bg-white/50 backdrop-blur-md flex-shrink-0 border-t border-white/50">
+                <button onclick="closeModal('modal-obj')" class="w-full py-3.5 bg-white/60 text-emerald-900 hover:bg-white/80 rounded-xl font-bold shadow-sm border border-white transition-all">Kembali ke Cover</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-referensi" class="fixed inset-0 z-[60] modal-backdrop flex items-center justify-center hidden-screen px-4 py-8">
+        <div class="glass-panel rounded-[2.5rem] shadow-2xl w-full max-w-lg slide-up overflow-hidden max-h-full flex flex-col border border-white/80">
+            <div class="glass-dark p-5 text-white text-center font-bold tracking-wider text-lg flex-shrink-0">Referensi & Sumber Belajar</div>
+            <div class="p-8 overflow-y-auto flex-1 text-sm md:text-base space-y-6 bg-white/40 backdrop-blur-sm">
+                <div>
+                    <h3 class="font-extrabold text-emerald-900 border-l-4 border-emerald-500 pl-3 mb-4">Daftar Pustaka</h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-3 font-medium leading-relaxed">
+                        <li>Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi. (2021). <em>Ilmu Pengetahuan Alam untuk SMP Kelas VIII</em>. Jakarta: Pusat Perbukuan.</li>
+                        <li>Kementerian Agama Republik Indonesia. <em>Panduan Kurikulum Berbasis Cinta (KBC)</em>.</li>
+                        <li><em>Al-Qur'an dan Terjemahannya</em>.</li>
+                        <li>Berbagai artikel dan literatur terkait dengan <em>Kearifan Lokal dan Budaya Gorontalo</em>.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-6 bg-white/50 backdrop-blur-md flex-shrink-0 border-t border-white/50">
+                <button onclick="closeModal('modal-referensi')" class="w-full py-3.5 bg-white/60 text-emerald-900 hover:bg-white/80 rounded-xl font-bold shadow-sm border border-white transition-all">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC & CONTENT -->
+    <script>
+        /* --- KONFIGURASI GOOGLE APPS SCRIPT --- */
+        // DEKLARASI TAUTAN WEB APP GAS
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzmTdrZPCUhW42ZaR1Vx-bW2eP35B5uWbyPfL9-Ijf__sQ3eqOPd5ds6eLg1JbacmrjSQ/exec"; 
+
+        /* --- STATE MANAGEMENT --- */
+        const state = {
+            user: { name: '', class: '' },
+            screen: 'splash',
+            guideIndex: 0,
+            unlocks: { belajar: true, berlatih: false, bermain: false, asesmen: false },
+            progress: { belajar: 0, berlatih: 0, bermain: 0, asesmen: 0 },
+            scores: { berlatih: 0, bermain: 0, asesmenTotal: 0, l1: 0, l2: 0, l3: 0, hots: 0 },
+            currentModule: null,
+            moduleData: null,
+            moduleIndex: 0,
+            tempAnswer: null,
+            // Track jawaban siswa untuk keperluan laporan detail ke Spreadsheet
+            studentAnswers: { berlatih: [], bermain: [], asesmen: [] }
+        };
+
+        /* --- CONTENT DATA --- */
+        const dataBelajar = [
+            {
+                title: "1. Mengenal Zat Aditif & Adiktif",
+                content: `<div class="space-y-4 text-gray-700 leading-relaxed text-justify"><p>Pernahkah kamu memperhatikan warna cerah pada kue khas Gorontalo, atau rasa gurih pada kuah Bugis? Bahan-bahan yang ditambahkan ke dalam makanan untuk tujuan tertentu disebut <strong>Zat Aditif</strong>.</p><p>Sedangkan <strong>Zat Adiktif</strong> adalah zat yang jika dikonsumsi dapat menyebabkan ketergantungan (adiksi) atau ingin menggunakannya terus-menerus, seperti kafein, nikotin, atau narkotika.</p><div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 my-4 text-center"><p class="font-arabic text-2xl mb-2 text-emerald-800 leading-loose">يَا أَيُّهَا النَّاسُ كُلُوا مِمَّا فِي الْأَرْضِ حَلَالًا طَيِّبًا</p><p class="text-sm italic">"Hai sekalian manusia, makanlah yang halal lagi baik dari apa yang terdapat di bumi..." (QS. Al-Baqarah: 168)</p><p class="text-sm mt-2 text-emerald-700 font-semibold">Hikmah KBC: Bukti cinta kita kepada Allah adalah dengan memilih makanan yang tidak hanya halal, tetapi juga 'Thoyyib' (baik/sehat), bebas dari zat berbahaya.</p></div></div>`,
+                quiz: { q: "Zat yang ditambahkan pada makanan untuk meningkatkan kualitas, penampilan, atau keawetannya disebut...", opts: ["Zat Adiktif", "Zat Aditif", "Zat Narkotika"], ans: 1 }
+            },
+            {
+                title: "2. Pewarna & Pemanis Alami vs Buatan",
+                content: `<div class="space-y-4 text-gray-700 leading-relaxed text-justify"><p>Masyarakat Gorontalo memiliki kearifan lokal dalam mengolah makanan. Contohnya, kue perahu yang menggunakan pewarna hijau alami dari <strong>daun pandan</strong>. Pemanis alami seperti <strong>gula aren (pahangga)</strong> juga dihasilkan oleh petani lokal di dataran agraris kita.</p><p>Namun, saat ini banyak beredar pewarna buatan (sintetis) seperti <i>Tartrazine</i> (kuning) atau pemanis buatan seperti <i>Siklamat</i> pada minuman kemasan berharga murah. Konsumsi berlebihan zat buatan ini berisiko bagi kesehatan.</p><div class="bg-yellow-50 border-l-4 border-yellow-500 p-3 text-sm italic">Cinta Lingkungan & Tanah Air: Menggunakan bahan alami buatan petani lokal membantu ekonomi daerah dan menjaga kelestarian alam!</div></div>`,
+                quiz: { q: "Manakah pasangan pewarna dan pemanis alami yang sering digunakan dalam kuliner tradisional Gorontalo?", opts: ["Tartrazine dan Siklamat", "Daun Pandan dan Gula Aren", "Karamel dan Sakarin"], ans: 1 }
+            },
+            {
+                title: "3. Pengawet & Penyedap",
+                content: `<div class="space-y-4 text-gray-700 leading-relaxed text-justify"><p>Nelayan di pesisir <strong>Teluk Tomini</strong> membawa hasil tangkapan ikan yang melimpah. Agar ikan tidak cepat busuk, cara pengawetan alami yang thoyyib adalah dengan <strong>penggaraman</strong> atau pendinginan.</p><p>Sangat dilarang menggunakan pengawet berbahaya seperti <i>Formalin</i> atau <i>Boraks</i>! Selain itu, penyedap rasa buatan seperti MSG (Monosodium Glutamat) sebaiknya dibatasi. Kita bisa menggunakan penyedap alami berupa kaldu jamur, bawang, atau rempah-rempah yang melimpah di bumi Nusantara.</p></div>`,
+                quiz: { q: "Cara pengawetan ikan hasil tangkapan nelayan Teluk Tomini yang aman dan sesuai prinsip thoyyib adalah...", opts: ["Merendam dengan cairan Formalin", "Menambahkan Boraks agar kenyal", "Penggaraman dan pengeringan (ikan asin)"], ans: 2 }
+            },
+            {
+                title: "4. Memahami Zat Adiktif",
+                content: `<div class="space-y-4 text-gray-700 leading-relaxed text-justify"><p>Selain zat pada makanan, ada zat yang memengaruhi kerja sistem saraf pusat dan memicu kecanduan, yaitu <strong>Zat Adiktif</strong>. Zat ini dibagi menjadi Narkotika, Psikotropika, dan Zat Adiktif lainnya.</p><p>Contoh zat adiktif ringan yang legal namun perlu dibatasi adalah <strong>Kafein</strong> dalam kopi. Di Gorontalo, kita mengenal <i>Kopi Pinogu</i> yang nikmat. Minum secukupnya menyegarkan, tapi berlebihan bisa membuat jantung berdebar.</p><p>Zat adiktif lain yang sangat berbahaya bagi pelajar adalah <strong>Nikotin</strong> dalam rokok atau vape. Asapnya tidak hanya merusak paru-paru perokok, tapi juga menyakiti orang di sekitarnya.</p></div>`,
+                quiz: { q: "Zat adiktif ringan yang secara legal terdapat dalam kopi seperti Kopi Pinogu adalah...", opts: ["Nikotin", "Kafein", "Alkohol"], ans: 1 }
+            },
+            {
+                title: "5. Bahaya Narkotika & Psikotropika",
+                content: `<div class="space-y-4 text-gray-700 leading-relaxed text-justify"><p>Selain zat adiktif yang legal, ada juga yang sangat berbahaya dan ilegal jika disalahgunakan, yaitu <strong>Narkotika</strong> (seperti ganja, sabu, heroin) dan <strong>Psikotropika</strong> (seperti obat penenang kuat/ekstasi).</p><p>Zat-zat ini dapat merusak sel-sel otak secara permanen, menyebabkan halusinasi, depresi berat, hingga kematian. Dalam Islam, segala bentuk khamr (zat yang memabukkan dan menutupi akal sehat) sangat diharamkan.</p><div class="bg-red-50 border-l-4 border-red-500 p-3 text-sm italic">Bentuk cinta kepada diri sendiri (tubuh dan akal sehat) adalah dengan berani mengatakan <strong>TIDAK PADA NARKOBA!</strong></div></div>`,
+                quiz: { q: "Zat adiktif yang sangat berbahaya, dapat memicu kerusakan sistem saraf secara permanen, dan penggunaannya tanpa resep dokter dilarang keras oleh hukum dan agama adalah...", opts: ["Kafein dan Teh", "Narkotika dan Psikotropika", "Pemanis dan Pewarna Buatan"], ans: 1 }
+            },
+            {
+                title: "6. Menjaga Diri & Memilih yang Thoyyib",
+                content: `<div class="space-y-4 text-gray-700 leading-relaxed text-justify"><p>Bagaimana cara kita melindungi diri? Langkah terbaik menghindari penyalahgunaan zat adiktif adalah dengan memperkuat iman, bergaul di lingkungan yang positif, dan mengisi waktu luang dengan kegiatan bermanfaat.</p><p>Untuk makanan, biasakan membaca label kemasan. Teliti apakah ada zat aditif buatan yang berlebihan. Mari budayakan mengonsumsi bahan pangan lokal dari petani dan nelayan kita yang lebih segar, sehat, dan thoyyib.</p><p class="font-bold text-emerald-800 text-center mt-4">Jadilah generasi cerdas, sehat, dan berakhlak mulia!</p></div>`,
+                quiz: { q: "Langkah preventif (pencegahan) terbaik untuk menghindari bahaya penyalahgunaan zat adiktif bagi seorang pelajar adalah...", opts: ["Mencoba sedikit saja untuk menghilangkan rasa penasaran", "Ikut-ikutan tren pergaulan teman agar tidak dikucilkan", "Memperkuat iman, memilih pergaulan positif, dan berani menolak narkoba"], ans: 2 }
+            }
+        ];
+
+        const dataBerlatih = [
+            { type: 'mc', stimulus: 'Zat aditif ditambahkan ke dalam makanan untuk berbagai tujuan, seperti meningkatkan rasa, warna, atau keawetan.', q: 'Manakah dari berikut ini yang merupakan contoh pemanis alami?', opts: ['Sakarin', 'Aspartam', 'Gula Aren', 'Siklamat'], ans: 2 },
+            { type: 'mc', stimulus: 'Beberapa zat dapat menyebabkan efek ketergantungan pada penggunanya dan dikategorikan sebagai zat adiktif.', q: 'Zat adiktif yang secara alami terdapat dalam daun tembakau dan menyebabkan kecanduan merokok adalah...', opts: ['Kafein', 'Tar', 'Nikotin', 'Karbon Monoksida'], ans: 2 },
+            { type: 'mc', stimulus: 'Masyarakat Gorontalo sering menggunakan kunyit, daun pandan, dan buah naga dalam pengolahan makanan tradisional.', q: 'Bahan-bahan alami tersebut berfungsi sebagai zat aditif jenis...', opts: ['Pengawet', 'Pewarna', 'Penyedap', 'Pemanis'], ans: 1 },
+            { type: 'mc', stimulus: 'Menggunakan pengawet alami lebih aman bagi kesehatan tubuh kita dibandingkan pengawet sintetis yang berbahaya.', q: 'Cara pengawetan ikan hasil tangkapan nelayan yang aman dan sesuai thoyyib adalah...', opts: ['Menambahkan boraks', 'Merendam dalam formalin', 'Penggaraman dan pengeringan', 'Menyuntikkan pemutih'], ans: 2 },
+            { type: 'mc', stimulus: 'Minuman beralkohol menekan aktivitas sistem saraf pusat dan menyebabkan hilangnya kesadaran.', q: 'Berdasarkan efeknya pada sistem saraf, alkohol (khamr) digolongkan sebagai zat...', opts: ['Depresan', 'Stimulan', 'Halusinogen', 'Inhalan'], ans: 0 }
+        ];
+
+        const dataBermain = [
+            { type: 'mc', stimulus: `Koperasi MTs Alkhairaat Tilamuta mengadakan pekan jajanan sehat. Ibu Nur'afni menginstruksikan siswa untuk membawa jajanan tradisional khas Gorontalo. Ali membawa 'Kue Perahu' yang dibungkus daun pandan. Kue tersebut berwarna hijau cerah alami, memiliki rasa manis yang khas, dan aroma wangi daun pandan. Di sisi lain, Budi membeli minuman es serut di luar sekolah yang berwarna merah menyala dan meninggalkan rasa pahit di tenggorokan (indikasi sakarin/pemanis buatan berlebih). Penggunaan bahan alami sangat dianjurkan karena aman bagi pencernaan.`, q: "Berdasarkan teks di atas, bahan pewarna yang digunakan pada kue perahu milik Ali berfungsi sebagai...", opts: ["Pewarna alami sekaligus pemberi aroma", "Pewarna buatan yang membahayakan", "Pemanis alami pengganti gula"], ans: 0 },
+            { type: 'match', stimulus: `Wilayah dataran agraris di Gorontalo menghasilkan komoditas tebu dan nira aren. Dari nira aren, petani lokal mengolahnya menjadi gula aren (Pahangga). Gula aren sering digunakan ibu-ibu untuk membuat kolak. Selain memberikan rasa manis, gula aren juga memberikan warna cokelat yang alami. Berbeda dengan industri minuman instan skala besar yang seringkali menekan biaya produksi dengan menggunakan aspartam, yaitu pemanis buatan yang tingkat kemanisannya 200 kali lipat dari gula biasa namun rendah kalori.`, q: "Kelompokkan bahan berikut ke dalam kategori yang tepat: [Pahangga / Gula Aren] dan [Aspartam]", opts: ["Pahangga: Pemanis Buatan, Aspartam: Pemanis Alami", "Pahangga: Pemanis Alami, Aspartam: Pemanis Buatan", "Keduanya adalah Pemanis Alami"], ans: 1 },
+            { type: 'mc', stimulus: `Sebagai wilayah pesisir, Teluk Tomini menyumbang hasil laut yang melimpah. Saat panen ikan cakalang melimpah, para nelayan tradisional mengawetkannya dengan melumurinya dengan garam dalam jumlah banyak, lalu menjemurnya. Garam berfungsi menarik air keluar dari sel daging ikan sehingga bakteri pembusuk tidak dapat berkembang biak. Metode tradisional ini sejalan dengan prinsip kelestarian lingkungan dan kesehatan.`, q: "Bagaimana mekanisme kerja garam sehingga dapat berfungsi sebagai pengawet alami pada ikan cakalang?", opts: ["Mengubah suhu daging ikan menjadi sangat dingin sehingga bakteri mati.", "Menyerap kandungan air (dehidrasi) pada daging ikan sehingga menghambat pertumbuhan bakteri.", "Bereaksi secara kimia menghasilkan racun yang membunuh lalat."], ans: 1 },
+            { type: 'mc', stimulus: `Monosodium Glutamat (MSG) atau vetsin adalah penyedap rasa sintesis yang memberi rasa 'umami'. MSG terbuat dari fermentasi tetes tebu. Meskipun diizinkan penggunaannya dalam batas tertentu, konsumsi MSG yang berlebihan (overdosis) dalam satu waktu dapat menyebabkan sindrom restoran cina (Chinese Restaurant Syndrome) dengan gejala pusing, mual, dan dada berdebar bagi orang yang sensitif.`, q: "Apa gejala negatif yang timbul akibat mengonsumsi penyedap MSG secara berlebihan bagi orang yang sensitif?", opts: ["Kecanduan tingkat tinggi seperti narkoba.", "Sindrom Restoran Cina (pusing, mual, dada berdebar).", "Perubahan warna kulit menjadi kekuningan."], ans: 1 },
+            { type: 'match', stimulus: `Di sebuah kawasan, ditemukan beberapa anak yang sering menongkrong sambil menghirup uap dari kaleng lem aibon. Aktivitas ini sangat berbahaya karena lem aibon termasuk dalam kategori INHALAN (pelarut mudah menguap). Uap kimia tersebut langsung masuk ke paru-paru dan dialirkan darah ke otak, menyebabkan kerusakan saraf, halusinasi, dan dapat memicu kematian mendadak.`, q: "Berdasarkan informasi, Lem Aibon, Bensin, dan Thinner termasuk dalam golongan zat adiktif jenis apa?", opts: ["Narkotika Golongan 1", "Psikotropika Stimulan", "Inhalan / Solven"], ans: 2 },
+            { type: 'mc', stimulus: `Budaya ngopi sangat erat dengan masyarakat. Kopi mengandung senyawa aktif bernama kafein. Kafein tergolong zat adiktif karena merangsang sistem saraf pusat (stimulan). Mengonsumsi secangkir kopi di pagi hari dapat mengusir rasa kantuk, meningkatkan kewaspadaan, dan fokus. Namun, jika diminum dalam jumlah yang sangat banyak setiap hari, tubuh akan mengalami toleransi.`, q: "Efek farmakologis dari kafein pada sistem saraf pusat yang membuat mata tetap melek adalah...", opts: ["Sebagai Depresan (penenang)", "Sebagai Stimulan (perangsang)", "Sebagai Halusinogen"], ans: 1 },
+            { type: 'mc', stimulus: `Narkotika adalah zat buatan atau yang berasal dari tanaman yang dapat menyebabkan penurunan kesadaran, hilangnya rasa nyeri, dan menimbulkan ketergantungan luar biasa. Contoh paling umum adalah Ganja. Negara Indonesia mengkategorikan Ganja sebagai Narkotika Golongan I, artinya dilarang keras untuk pengobatan karena potensi kecanduannya yang sangat tinggi dan efek kerusakannya.`, q: "Mengapa Ganja dilarang digunakan untuk tujuan pengobatan di Indonesia (masuk Golongan I)?", opts: ["Karena harganya sangat mahal dan sulit didapat.", "Karena potensi menyebabkan sindrom ketergantungan (adiksi) sangat tinggi dan merusak.", "Karena dapat menyembuhkan segala macam penyakit ringan."], ans: 1 },
+            { type: 'match', stimulus: `Fatimah membeli sebungkus biskuit cokelat. Ia membaca bagian komposisi: "Tepung terigu, Gula, Lemak Nabati, Cokelat Bubuk, Pengembang (Natrium Bikarbonat), Pengawet (Natrium Benzoat), Pewarna Sintetik (Tartrazin), Perisa Sintetik Vanila". Natrium Bikarbonat berfungsi mengembangkan adonan. Natrium Benzoat digunakan untuk mencegah tumbuhnya jamur agar biskuit awet.`, q: "Dari daftar komposisi biskuit milik Fatimah, bahan manakah yang berfungsi khusus mencegah tumbuhnya jamur/bakteri (pengawet)?", opts: ["Tepung terigu dan Lemak Nabati", "Natrium Bikarbonat", "Natrium Benzoat"], ans: 2 },
+            { type: 'mc', stimulus: `Rokok elektronik (vape) sering dipromosikan sebagai alternatif yang aman. Padahal, cairan pada vape sebagian besar tetap mengandung Nikotin cair yang diekstrak dari tembakau. Nikotin inilah biang kerok utama yang membuat perokok maupun vaper menjadi kecanduan (adiksi).`, q: "Zat utama dalam cairan rokok elektronik (vape) yang menyebabkan penggunanya mengalami kecanduan (adiksi) adalah...", opts: ["Propilen Glikol", "Nikotin Cair", "Formaldehida"], ans: 1 },
+            { type: 'mc', stimulus: `Alkohol menekan kerja sistem saraf (depresan), membuat peminumnya kehilangan keseimbangan, bicara ngawur, hingga merusak organ hati (sirosis) dalam jangka panjang. Islam mengharamkan khamr (minuman keras) karena mudaratnya jauh lebih besar daripada manfaatnya.`, q: "Berdasarkan cara kerjanya pada sistem saraf, Alkohol (minuman keras) dikategorikan sebagai...", opts: ["Stimulan (meningkatkan detak jantung)", "Depresan (menekan/memperlambat kerja sistem saraf)", "Halusinogen (membuat khayalan)"], ans: 1 }
+        ];
+
+        const dataAsesmen = [
+            { lvl: 1, pts: 5, stimulus: `Pada saat membuat sirup, Ibu menambahkan beberapa tetes sari daun suji ke dalam larutan gula encer. Setelah ditambahkan, air sirup yang awalnya bening berubah menjadi hijau segar.`, q: "Fungsi utama penambahan sari daun suji pada pembuatan sirup tersebut adalah sebagai...", opts: ["Zat pemanis buatan", "Zat pewarna alami", "Zat pengawet alami", "Zat penyedap rasa"], ans: 1 },
+            { lvl: 1, pts: 5, stimulus: `Kopi, teh, dan minuman energi ringan banyak dikonsumsi oleh pekerja keras. Zat aktif di dalamnya membuat mata tetap terjaga dan menghilangkan rasa kantuk.`, q: "Zat aktif utama dalam kopi dan teh yang bertindak sebagai stimulan ringan adalah...", opts: ["Tar", "Nikotin", "Kafein", "Alkohol"], ans: 2 },
+            { lvl: 1, pts: 5, stimulus: `Salah satu ciri orang yang sudah kecanduan narkotika adalah ia akan terus menambah dosis obatnya untuk mendapatkan efek yang sama seperti semula.`, q: "Istilah biologis untuk keadaan di mana tubuh memerlukan dosis zat adiktif yang semakin lama semakin tinggi untuk mendapatkan efek yang sama disebut...", opts: ["Toleransi", "Sakau (Withdrawal)", "Halusinasi", "Rehabilitasi"], ans: 0 },
+            { lvl: 1, pts: 5, stimulus: `Di dalam sebatang rokok, terdapat ribuan bahan kimia beracun. Salah satunya adalah komponen kotoran pekat yang menempel pada paru-paru jika terhirup terus-menerus.`, q: "Komponen pekat pada asap rokok yang dapat menyumbat saluran pernapasan dan memicu kanker paru-paru (karsinogenik) adalah...", opts: ["Nikotin", "Karbon Monoksida", "Tar", "Metanol"], ans: 2 },
+            { lvl: 1, pts: 5, stimulus: `Industri minuman ringan sering kali mencari cara untuk menekan biaya produksi agar minuman bisa dijual murah dengan menggunakan zat aditif pemanis.`, q: "Zat pemanis buatan yang sering digunakan karena harganya murah, namun jika digunakan secara berlebihan akan meninggalkan rasa pahit di lidah adalah...", opts: ["Sorbitol", "Gula Aren", "Sakarin", "Madu"], ans: 2 },
+            { lvl: 2, pts: 7, stimulus: `Seorang siswa MTs meneliti bungkus camilan keripik. Ia menemukan tulisan komposisi: "Kentang, Minyak Sawit, Bumbu Rasa Sapi Panggang (mengandung penguat rasa Mononatrium Glutamat), Dinatrium Inosinat, Pemanis Alami Glikosida Steviol, Antioksidan TBHQ".`, q: "Berdasarkan komposisi tersebut, zat aditif yang berfungsi sebagai antioksidan (mencegah ketengikan) adalah...", opts: ["Mononatrium Glutamat", "Glikosida Steviol", "TBHQ (Tertiary Butylhydroquinone)", "Dinatrium Inosinat"], ans: 2 },
+            { lvl: 2, pts: 7, stimulus: `Dina memperhatikan ibunya membuat ikan asin dengan melumuri garam. Secara ilmiah, garam bekerja melalui proses osmosis.`, q: "Pernyataan yang tepat menjelaskan mekanisme garam (NaCl) dalam mengawetkan bahan makanan adalah...", opts: ["Garam bereaksi dengan protein ikan membentuk lapisan plastik pelindung.", "Garam menyebabkan air keluar dari sel-sel bakteri pembusuk (plasmolisis) sehingga bakteri mati.", "Garam menurunkan suhu bahan makanan hingga titik beku.", "Garam mengikat gas oksigen sehingga bakteri tidak bisa bernapas."], ans: 1 },
+            { lvl: 2, pts: 7, stimulus: `Kasus remaja yang menghirup uap bensin dari tangki motor menyebabkan efek mabuk singkat dan kerusakan sel otak.`, q: "Perilaku menghirup uap bensin atau lem digolongkan dalam penyalahgunaan zat adiktif jenis...", opts: ["Stimulan kuat", "Narkotika golongan daun-daunan", "Inhalansia (Zat Inhalan)", "Psikotropika penenang"], ans: 2 },
+            { lvl: 2, pts: 7, stimulus: `Pak Ahmad meminum sirup obat batuk beresep khusus (berlogo lingkaran merah K). Obat tersebut mengandung senyawa turunan opium 'Codein' yang menekan pusat batuk di otak.`, q: "Penggunaan zat yang berpotensi adiktif seperti Codein diizinkan dalam kondisi...", opts: ["Bebas dijual di warung untuk mengobati kantuk.", "Dipergunakan secara legal hanya dengan resep dokter untuk tujuan medis tertentu.", "Digunakan oleh remaja sebagai campuran minuman energi.", "Diminum setiap hari sebagai suplemen pencegah batuk."], ans: 1 },
+            { lvl: 2, pts: 7, stimulus: `Ibu membaca komposisi kornet: Daging sapi, Air, Pati, Garam, dan Natrium Nitrat.`, q: "Fungsi dari penambahan Natrium Nitrat pada makanan olahan daging (seperti kornet dan sosis) adalah...", opts: ["Menambah rasa gurih seperti MSG.", "Mempertahankan warna merah daging dan mencegah pertumbuhan bakteri botulinum.", "Memberikan aroma daging panggang yang khas.", "Menurunkan kadar kolesterol jahat pada daging."], ans: 1 },
+            { lvl: 3, pts: 8, stimulus: `Budi (14 tahun) sering batuk. Ayahnya adalah perokok berat. Budi mencoba merokok dan sekarang merasa gelisah jika tidak merokok sehari saja. Asap rokok mengandung Tar, Karbon Monoksida, dan Nikotin.`, q: "Berdasarkan teks, mengapa Budi merasa 'gelisah' jika tidak merokok, dan gas apa dalam asap rokok yang membuat perokok sering merasa sesak napas?", opts: ["Gelisah akibat efek Tar; Sesak napas karena gas Oksigen murni.", "Gelisah akibat kecanduan Nikotin; Sesak napas karena Karbon Monoksida mengikat sel darah merah (Hb) lebih kuat dari oksigen.", "Gelisah karena tekanan teman; Sesak napas karena gas Hidrogen.", "Gelisah akibat putus zat Karbon Monoksida; Sesak napas karena efek Tar menutupi paru-paru."], ans: 1 },
+            { lvl: 3, pts: 8, stimulus: `Sebuah industri sirup memproduksi minuman murah. Uji lab menemukan penggunaan pewarna tekstil Rhodamin B (merah berpendar) yang dapat memicu kanker liver, padahal labelnya menuliskan "Sirup Strawberi 100% Gula Asli".`, q: "Argumen penolakan ilmiah yang paling tepat terhadap tindakan pengusaha tersebut adalah...", opts: ["Pengusaha bebas mencari keuntungan maksimal, namun konsumen harusnya pintar memilih.", "Pewarna tekstil seperti Rhodamin B memiliki struktur kimia yang sulit diurai sistem pencernaan, bersifat karsinogenik, dan pemalsuan label melanggar etika.", "Sakarin masih diperbolehkan jadi tidak masalah, yang penting harganya murah untuk masyarakat bawah.", "Rhodamin B memberikan warna yang jauh lebih menarik daripada ekstrak strawberi alami."], ans: 1 },
+            { lvl: 3, pts: 8, stimulus: `Minuman X: Air, Gula Tebu (30g), Pewarna Alami Beta-Karoten, Kalium Sorbat. Minuman Y: Air, Pemanis Buatan (Aspartam 50mg), Pewarna Sintetik Tartrazin, Natrium Benzoat. Ani memiliki diabetes (gula darah tinggi), Rio sehat.`, q: "Berdasarkan analisis, pilihan konsumsi yang paling rasional adalah...", opts: ["Keduanya harus meminum Minuman X karena menggunakan gula asli.", "Ani sebaiknya memilih Minuman Y (jika terpaksa) karena bebas gula tebu, sedangkan Rio lebih baik membatasi keduanya.", "Ani dan Rio harus meminum Minuman Y karena pemanis buatan mengandung vitamin.", "Minuman X mengandung zat adiktif berbahaya."], ans: 1 },
+            { lvl: 3, pts: 8, stimulus: `Sekelompok remaja menawarkan botol berisi minuman keras oplosan dengan alasan "solidaritas". Alkohol merusak akal sehat.`, q: "Menurut prinsip sains dan nilai agama, keputusan paling kritis dan rasional yang harus kamu ambil adalah...", opts: ["Ikut meminum sedikit saja agar dihargai oleh teman.", "Menolak dengan tegas dan segera pergi karena alkohol merusak organ hati dan menekan sistem saraf pusat, bahkan menyebabkan kebutaan.", "Menghindari minuman tersebut tapi tetap diam di tempat menemani mereka.", "Mengganti campuran minuman tersebut dengan minuman energi."], ans: 1 },
+            { lvl: 3, pts: 8, stimulus: `Pemerintah melarang penggunaan Boraks pada bakso. Boraks adalah bahan antiseptik/pemutih kayu, namun oknum menggunakannya agar bakso kenyal dan awet.`, q: "Jika bakso berboraks ini dikonsumsi dalam jangka panjang, hal terburuk ditinjau dari sisi biologis adalah...", opts: ["Lambung akan menghasilkan enzim menetralisir racun boraks.", "Terjadi akumulasi racun kimia di hati dan ginjal yang menyebabkan kerusakan organ vital secara perlahan hingga memicu kematian.", "Meningkatkan daya tahan bakteri baik di usus.", "Menyebabkan kecanduan mental."], ans: 1 }
+        ];
+
+
+        /* --- CORE FUNCTIONS & BACKEND INTEGRATION --- */
+
+        window.onload = () => {
+            syncDataSoal(); // Mengirim data soal ke Spreadsheet
+            
+            setTimeout(() => {
+                document.getElementById('screen-splash').classList.add('opacity-0');
+                setTimeout(() => { nav('screen-cover'); }, 500);
+            }, 2000);
+            
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date().toLocaleDateString('id-ID', options);
+            document.querySelectorAll('.date-today').forEach(el => el.textContent = today);
+        };
+
+        // Fungsi Integrasi GAS - Sinkronisasi Soal
+        function syncDataSoal() {
+            if(GAS_URL === "URL_GAS_ANDA_DISINI") return; 
+            
+            const soalBerlatih = dataBerlatih.map(d => ({ type: 'Berlatih', q: d.q, opts: d.opts.join(' | '), ans: String.fromCharCode(65+d.ans) }));
+            const soalBermain = dataBermain.map(d => ({ type: 'Bermain', q: d.q, opts: d.opts.join(' | '), ans: String.fromCharCode(65+d.ans) }));
+            
+            fetch(GAS_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({
+                    action: 'syncSoal',
+                    data: [...soalBerlatih, ...soalBermain]
+                })
+            }).catch(e => console.log("Sync Soal Error:", e));
+        }
+
+        // Fungsi Integrasi GAS - Pengiriman Hasil Asesmen
+        function submitHasilToGAS() {
+            if(GAS_URL === "URL_GAS_ANDA_DISINI") {
+                console.warn("GAS URL belum diatur, data tidak tersimpan ke Spreadsheet.");
+                return;
+            }
+
+            const totalSoal = dataAsesmen.length;
+            const benar = state.scores.l1 + state.scores.l2 + state.scores.l3;
+            const salah = totalSoal - benar;
+            
+            // Konversi index jawaban siswa menjadi huruf A, B, C, dst.
+            const jawabanSiswa = state.studentAnswers.asesmen.map(ansIdx => String.fromCharCode(65 + ansIdx));
+
+            fetch(GAS_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({
+                    action: 'submitHasil',
+                    nama: state.user.name,
+                    kelas: state.user.class,
+                    benar: benar,
+                    salah: salah,
+                    jawaban: jawabanSiswa
+                })
+            }).then(() => console.log("Data hasil berhasil dikirim ke Google Sheets."))
+              .catch(e => console.error("Error mengirim hasil:", e));
+        }
+
+        function nav(screenId) {
+            document.querySelectorAll('body > div#app > div').forEach(el => el.classList.add('hidden-screen'));
+            const target = document.getElementById(screenId);
+            if(target) target.classList.remove('hidden-screen');
+            if(screenId === 'screen-menu') updateDashboard();
+        }
+
+        function openModal(id) { document.getElementById(id).classList.remove('hidden-screen'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden-screen'); }
+
+        function submitForm() {
+            const name = document.getElementById('input-name').value.trim();
+            const cls = document.getElementById('input-class').value;
+            if(!name || !cls) {
+                document.getElementById('form-error').classList.remove('hidden');
+                return;
+            }
+            state.user.name = name;
+            state.user.class = cls;
+            
+            document.getElementById('display-student-name').textContent = name;
+            document.getElementById('display-student-class').textContent = cls;
+            
+            initGuide();
+            nav('screen-guide');
+        }
+
+        /* --- GUIDE SCREEN --- */
+        const guideSlides = [
+            { icon: 'fa-hand-sparkles', title: 'Halo, Penjelajah Ilmu!', text: 'Selamat datang di Media Pembelajaran Interaktif tentang Zat Aditif dan Adiktif. Mari belajar dengan menyenangkan dan penuh kasih sayang.' },
+            { icon: 'fa-unlock-keyhole', title: 'Petualangan Bertahap', text: 'Selesaikan tahap <b>BELAJAR</b> dan <b>BERLATIH</b> terlebih dahulu untuk membuka gembok <b>BERMAIN</b>. Setelah itu, buktikan pemahamanmu di tahap <b>ASESMEN</b>.' },
+            { icon: 'fa-quran', title: 'Cinta & Sains', text: 'Temukan hikmah ayat suci Al-Qur\'an dan nilai-nilai Kurikulum Berbasis Cinta (KBC) Kemenag yang terselip dalam kearifan lokal daerah kita. Siap?' }
+        ];
+
+        function initGuide() {
+            state.guideIndex = 0;
+            renderGuide();
+        }
+
+        function renderGuide() {
+            const slide = guideSlides[state.guideIndex];
+            const content = `
+                <div class="w-24 h-24 bg-ivory-100 backdrop-blur-sm border border-emerald-200 shadow-sm text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 transform transition-transform duration-500 hover:scale-110 floating">
+                    <i class="fas ${slide.icon}"></i>
+                </div>
+                <h2 class="text-3xl font-extrabold text-emerald-900 mb-4">${slide.title}</h2>
+                <p class="text-gray-700 font-medium leading-relaxed text-lg">${slide.text.replace('[NAMA]', state.user.name)}</p>
+            `;
+            document.getElementById('guide-content').innerHTML = content;
+            document.getElementById('guide-progress').style.width = `${((state.guideIndex + 1) / 3) * 100}%`;
+            
+            document.getElementById('btn-guide-prev').classList.toggle('invisible', state.guideIndex === 0);
+            
+            const btnNext = document.getElementById('btn-guide-next');
+            if (state.guideIndex === 2) {
+                btnNext.textContent = "Mulai Belajar";
+                btnNext.className = "px-6 py-2 bg-gold-500 text-white rounded-lg font-bold shadow-md hover:bg-gold-600 animate-pulse";
+            } else {
+                btnNext.textContent = "Selanjutnya";
+                btnNext.className = "px-4 py-2 bg-emerald-100 text-emerald-700 rounded-lg font-medium hover:bg-emerald-200";
+            }
+
+            const dots = document.getElementById('guide-dots').children;
+            for(let i=0; i<3; i++) {
+                dots[i].className = `w-2 h-2 rounded-full ${i === state.guideIndex ? 'bg-emerald-500' : 'bg-gray-300'}`;
+            }
+        }
+
+        function changeGuide(dir) {
+            if (dir === 1 && state.guideIndex === 2) {
+                nav('screen-menu');
+                return;
+            }
+            state.guideIndex += dir;
+            renderGuide();
+        }
+
+        /* --- DASHBOARD MENU --- */
+        function updateDashboard() {
+            document.getElementById('prog-belajar').textContent = `${state.progress.belajar}/6`;
+            document.getElementById('prog-berlatih').textContent = `${state.progress.berlatih}/5`;
+            document.getElementById('prog-bermain').textContent = `${state.progress.bermain}/10`;
+            
+            if (state.progress.belajar === 6) state.unlocks.berlatih = true;
+            if (state.progress.berlatih === 5) state.unlocks.bermain = true;
+            if (state.progress.bermain === 10) state.unlocks.asesmen = true;
+
+            updateCardStyle('berlatih', state.unlocks.berlatih);
+            updateCardStyle('bermain', state.unlocks.bermain);
+            updateCardStyle('asesmen', state.unlocks.asesmen);
+
+            if (state.progress.asesmen === 15) {
+                document.getElementById('report-btn-container').style.display = 'block';
+            }
+        }
+
+        function updateCardStyle(id, isUnlocked) {
+            const card = document.getElementById(`card-${id}`);
+            const lockIcon = document.getElementById(`lock-icon-${id}`);
+            const iconBg = document.getElementById(`icon-bg-${id}`);
+            const status = document.getElementById(`status-${id}`);
+
+            if (isUnlocked) {
+                card.classList.remove('opacity-80', 'grayscale');
+                card.classList.add('border-l-4', 'border-l-emerald-500', 'hover:shadow-2xl', 'transform', 'hover:-translate-y-2');
+                lockIcon.classList.add('hidden');
+                iconBg.classList.replace('bg-white/40', 'bg-white/60');
+                iconBg.classList.replace('text-gray-500', 'text-emerald-600');
+                status.className = 'text-xs font-bold px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 shadow-sm';
+                status.innerHTML = '<i class="fas fa-unlock mr-1"></i> Terbuka';
+            }
+        }
+
+        function startModule(moduleName) {
+            if (!state.unlocks[moduleName]) {
+                showLockAlert();
+                return;
+            }
+            state.currentModule = moduleName;
+            
+            // Reset state dan array tracking jawaban setiap kali modul baru dimulai
+            if (moduleName === 'belajar') {
+                state.moduleData = dataBelajar;
+                state.moduleIndex = state.progress.belajar < 6 ? state.progress.belajar : 0; 
+            } else if (moduleName === 'berlatih') {
+                state.moduleData = dataBerlatih;
+                state.moduleIndex = 0;
+                state.scores.berlatih = 0;
+                state.studentAnswers.berlatih = [];
+            } else if (moduleName === 'bermain') {
+                state.moduleData = dataBermain;
+                state.moduleIndex = 0; 
+                state.scores.bermain = 0;
+                state.studentAnswers.bermain = [];
+            } else if (moduleName === 'asesmen') {
+                state.moduleData = dataAsesmen;
+                state.moduleIndex = 0;
+                state.scores = { asesmenTotal: 0, l1: 0, l2: 0, l3: 0, hots: 0 };
+                state.studentAnswers.asesmen = [];
+            }
+
+            renderCurrentModuleState();
+            nav('screen-module');
+        }
+
+        function showLockAlert() {
+            document.getElementById('alert-title').textContent = "Masih Terkunci!";
+            document.getElementById('alert-msg').textContent = "Selesaikan misi sebelumnya dengan tuntas untuk membuka menu ini.";
+            openModal('modal-alert');
+        }
+
+        function confirmExit() {
+            if(state.currentModule === 'asesmen' && state.moduleIndex < 15) {
+                document.getElementById('alert-title').textContent = "Yakin Keluar?";
+                document.getElementById('alert-msg').textContent = "Proses ujianmu belum selesai. Jika keluar, nilai akan diulang dari awal.";
+                const oldBtn = document.querySelector('#modal-alert button');
+                const tempBtn = oldBtn.cloneNode(true);
+                tempBtn.textContent = "Ya, Keluar";
+                tempBtn.onclick = () => { 
+                    closeModal('modal-alert'); 
+                    nav('screen-menu'); 
+                    oldBtn.parentNode.replaceChild(oldBtn, tempBtn);
+                };
+                oldBtn.parentNode.replaceChild(tempBtn, oldBtn);
+                openModal('modal-alert');
+            } else {
+                nav('screen-menu');
+            }
+        }
+
+        /* --- MODULE RENDERING ENGINE --- */
+        function renderCurrentModuleState() {
+            const container = document.getElementById('module-content');
+            state.tempAnswer = null; 
+            
+            const total = state.moduleData.length;
+            document.getElementById('module-title').textContent = state.currentModule === 'asesmen' ? 'ASESMEN' : state.currentModule.toUpperCase();
+            document.getElementById('module-progress').textContent = `${state.moduleIndex + 1}/${total}`;
+
+            if (state.moduleIndex >= total) {
+                finishModule();
+                return;
+            }
+
+            const item = state.moduleData[state.moduleIndex];
+
+            if (state.currentModule === 'belajar') {
+                container.innerHTML = `
+                    <div class="slide-up glass-panel bg-white/70 p-8 rounded-[2rem] shadow-xl border border-white/80">
+                        <h3 class="text-2xl font-extrabold text-emerald-900 mb-6 border-b-2 border-emerald-400/50 pb-3 inline-block">${item.title}</h3>
+                        ${item.content}
+                        
+                        <div class="mt-10 bg-white/60 backdrop-blur-sm border border-white/80 p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500 rounded-l-2xl"></div>
+                            <h4 class="font-extrabold text-emerald-800 mb-4 flex items-center"><i class="fas fa-question-circle text-emerald-500 mr-2 text-xl"></i> Cek Pemahaman:</h4>
+                            <p class="text-gray-800 font-bold mb-5 text-lg">${item.quiz.q}</p>
+                            <div class="space-y-3" id="quiz-options">
+                                ${item.quiz.opts.map((opt, i) => `
+                                    <button onclick="selectOption(this, ${i})" class="w-full text-left p-4 rounded-xl border-2 border-white hover:border-emerald-400 hover:bg-ivory-100 transition-all bg-white/50 shadow-sm text-gray-800 font-medium backdrop-blur-sm hover:scale-[1.02]">
+                                        <span class="inline-block w-6 text-emerald-600 font-bold">${String.fromCharCode(65+i)}.</span> ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div id="feedback-area" class="mt-5 hidden"></div>
+                            <button id="btn-next-slide" onclick="nextSlideBelajar(${item.quiz.ans})" class="mt-6 w-full py-4 bg-white/60 border border-white/80 text-gray-500 rounded-xl font-bold transition-all backdrop-blur-sm shadow-sm" disabled>Jawab & Lanjut</button>
+                        </div>
+                    </div>
+                `;
+            } 
+            else {
+                const isAsesmen = state.currentModule === 'asesmen';
+                let badge = '';
+                if (state.currentModule === 'asesmen') {
+                    badge = `<span class="bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs px-3 py-1.5 rounded-full font-bold mb-4 inline-block shadow-sm">Level ${item.lvl} - ${item.pts} Poin</span>`;
+                } else if (state.currentModule === 'bermain') {
+                    badge = `<span class="bg-teal-100 text-teal-800 border border-teal-200 text-xs px-3 py-1.5 rounded-full font-bold mb-4 inline-block shadow-sm">Tantangan Literasi Numerasi</span>`;
+                } else {
+                    badge = `<span class="bg-blue-100 text-blue-800 border border-blue-200 text-xs px-3 py-1.5 rounded-full font-bold mb-4 inline-block shadow-sm">Latihan Pemahaman Dasar</span>`;
+                }
+
+                container.innerHTML = `
+                    <div class="slide-up max-w-3xl mx-auto glass-panel p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-white/80">
+                        <div class="mb-5">
+                            ${badge}
+                            <div class="bg-ivory-100/60 backdrop-blur-md border border-white/80 p-6 rounded-2xl text-gray-700 text-sm md:text-base leading-relaxed text-justify mb-8 shadow-sm">
+                                <i class="fas fa-book-reader text-emerald-400 float-left mr-4 text-3xl mt-1 opacity-90 animate-pulse"></i>
+                                ${item.stimulus}
+                            </div>
+                            <h3 class="text-xl font-extrabold text-gray-900 mb-6 leading-snug">${item.q}</h3>
+                        </div>
+                        
+                        <div class="space-y-4" id="quiz-options">
+                             ${item.opts.map((opt, i) => `
+                                <button onclick="selectOption(this, ${i})" class="w-full flex items-center p-4 rounded-2xl border-2 border-white/80 hover:border-emerald-400 hover:bg-ivory-100 transition-all bg-white/50 shadow-sm group text-left backdrop-blur-sm hover:scale-[1.02]">
+                                    <div class="w-10 h-10 rounded-full border-2 border-emerald-200 bg-white/70 flex items-center justify-center mr-4 group-hover:border-emerald-500 flex-shrink-0 text-emerald-700 font-bold shadow-sm transition-colors">
+                                        ${String.fromCharCode(65+i)}
+                                    </div>
+                                    <span class="text-gray-800 font-medium text-base">${opt}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        
+                        <div id="feedback-area" class="mt-6 hidden p-4 rounded-xl font-bold text-center border backdrop-blur-sm shadow-sm"></div>
+                        
+                        <div class="mt-8 flex justify-end">
+                            <button id="btn-submit-q" onclick="submitQuestion(${item.ans}, ${isAsesmen})" class="px-8 py-4 bg-white/60 border border-white/80 text-gray-500 rounded-xl font-bold cursor-not-allowed transition-all backdrop-blur-sm shadow-sm" disabled>
+                                Kunci Jawaban
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function selectOption(btnElem, index) {
+            const btns = document.getElementById('quiz-options').children;
+            for(let b of btns) {
+                b.classList.remove('border-emerald-400', 'bg-white/80', 'ring-2', 'ring-emerald-300');
+                if(b.querySelector('div')) b.querySelector('div').classList.remove('bg-emerald-500', 'text-white', 'border-emerald-500');
+            }
+            btnElem.classList.add('border-emerald-400', 'bg-white/80', 'ring-2', 'ring-emerald-300');
+            if(btnElem.querySelector('div')) btnElem.querySelector('div').classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+            
+            state.tempAnswer = index;
+
+            let subBtn = document.getElementById('btn-next-slide') || document.getElementById('btn-submit-q');
+            if(subBtn) {
+                subBtn.disabled = false;
+                subBtn.classList.remove('bg-white/60', 'text-gray-500', 'cursor-not-allowed');
+                subBtn.classList.add('bg-emerald-600', 'text-white', 'hover:bg-emerald-700', 'shadow-lg', 'border-transparent');
+            }
+        }
+
+        function nextSlideBelajar(correctAnswer) {
+            const btn = document.getElementById('btn-next-slide');
+            const fb = document.getElementById('feedback-area');
+            const options = document.getElementById('quiz-options').children;
+            
+            for(let o of options) o.onclick = null;
+            btn.style.display = 'none';
+            fb.classList.remove('hidden');
+
+            if (state.tempAnswer === correctAnswer) {
+                fb.innerHTML = '<div class="text-emerald-700 font-bold bg-emerald-100/90 border border-emerald-200 p-4 rounded-xl shadow-sm"><i class="fas fa-check-circle text-lg mr-1"></i> Tepat Sekali!</div>';
+                setTimeout(() => {
+                    state.progress.belajar = Math.max(state.progress.belajar, state.moduleIndex + 1);
+                    state.moduleIndex++;
+                    renderCurrentModuleState();
+                }, 1500);
+            } else {
+                fb.innerHTML = '<div class="text-red-600 font-bold bg-red-100/90 border border-red-200 p-4 rounded-xl mb-4 shadow-sm"><i class="fas fa-times-circle text-lg mr-1"></i> Jawaban kurang tepat. Coba pahami lagi materinya.</div>';
+                btn.style.display = 'block';
+                btn.textContent = "Coba Lagi";
+                for(let o of options) o.onclick = function() { selectOption(this, Array.from(options).indexOf(this)); };
+                state.tempAnswer = null;
+                btn.disabled = true;
+                btn.className = "mt-6 w-full py-4 bg-white/60 border border-white/80 text-gray-500 rounded-xl font-bold cursor-not-allowed transition-all backdrop-blur-sm shadow-sm";
+            }
+        }
+
+        function submitQuestion(correctAnswer, isAsesmen) {
+            const btn = document.getElementById('btn-submit-q');
+            const fb = document.getElementById('feedback-area');
+            const options = document.getElementById('quiz-options').children;
+            
+            // Simpan jawaban siswa untuk pengiriman Spreadsheet
+            if (state.studentAnswers[state.currentModule]) {
+                state.studentAnswers[state.currentModule].push(state.tempAnswer);
+            }
+
+            for(let o of options) o.onclick = null;
+            btn.disabled = true;
+
+            const isCorrect = state.tempAnswer === correctAnswer;
+
+            options[correctAnswer].classList.add('border-emerald-400', 'bg-emerald-50/90');
+            
+            if (isCorrect) {
+                fb.className = "mt-6 p-4 rounded-xl font-bold text-center bg-emerald-100/90 text-emerald-800 border border-emerald-200 fade-in shadow-sm";
+                fb.innerHTML = '<i class="fas fa-star text-gold-500 text-2xl mb-1 block floating"></i> Luar Biasa! Jawabanmu Benar.';
+                
+                if (state.currentModule === 'berlatih') state.scores.berlatih++;
+                if (state.currentModule === 'bermain') state.scores.bermain++;
+                if(isAsesmen) {
+                    const item = state.moduleData[state.moduleIndex];
+                    state.scores.asesmenTotal += item.pts;
+                    if(item.lvl === 1) state.scores.l1++;
+                    if(item.lvl === 2) state.scores.l2++;
+                    if(item.lvl === 3) state.scores.l3++;
+                }
+            } else {
+                options[state.tempAnswer].classList.add('border-red-400', 'bg-red-50/90');
+                fb.className = "mt-6 p-4 rounded-xl font-bold text-center bg-red-100/90 text-red-800 border border-red-200 fade-in shadow-sm";
+                fb.innerHTML = '<i class="fas fa-times-circle text-2xl mb-1 block"></i> Kurang Tepat, Jangan Menyerah!';
+            }
+            
+            fb.classList.remove('hidden');
+
+            setTimeout(() => {
+                if(state.currentModule === 'berlatih') {
+                     state.progress.berlatih = Math.max(state.progress.berlatih, state.moduleIndex + 1);
+                } else if(state.currentModule === 'bermain') {
+                     state.progress.bermain = Math.max(state.progress.bermain, state.moduleIndex + 1);
+                } else if(state.currentModule === 'asesmen') {
+                     state.progress.asesmen = Math.max(state.progress.asesmen, state.moduleIndex + 1);
+                }
+                state.moduleIndex++;
+                renderCurrentModuleState();
+            }, 2000);
+        }
+
+        function finishModule() {
+            if (state.currentModule === 'belajar') {
+                document.getElementById('module-content').innerHTML = `
+                    <div class="text-center slide-up mt-10 glass-panel p-10 rounded-[2.5rem] shadow-xl max-w-2xl mx-auto border border-white/80">
+                        <div class="w-28 h-28 bg-ivory-100 border border-white shadow-sm text-emerald-500 rounded-full flex items-center justify-center text-6xl mx-auto mb-6 backdrop-blur-sm floating"><i class="fas fa-check-circle"></i></div>
+                        <h2 class="text-4xl font-extrabold text-emerald-900 mb-3">Alhamdulillah!</h2>
+                        <p class="text-gray-700 font-medium mb-8 text-lg">Kamu telah menyelesaikan modul Belajar. Gembok menu BERLATIH telah terbuka.</p>
+                        <button onclick="nav('screen-menu')" class="px-10 py-4 bg-emerald-600 text-white rounded-2xl font-bold shadow-xl hover:bg-emerald-700 hover:shadow-emerald-600/40 transition-all text-lg animate-pulse">Kembali ke Menu</button>
+                    </div>
+                `;
+                updateDashboard();
+            }
+            else if (state.currentModule === 'berlatih') {
+                document.getElementById('module-content').innerHTML = `
+                    <div class="text-center slide-up mt-10 glass-panel p-10 rounded-[2.5rem] shadow-xl max-w-2xl mx-auto border border-white/80">
+                        <div class="w-28 h-28 bg-ivory-100 border border-white shadow-sm text-gold-500 rounded-full flex items-center justify-center text-6xl mx-auto mb-6 backdrop-blur-sm floating"><i class="fas fa-medal"></i></div>
+                        <h2 class="text-4xl font-extrabold text-emerald-900 mb-3">Mantap!</h2>
+                        <p class="text-gray-700 font-medium mb-4 text-lg">Kamu berhasil menyelesaikan Latihan Dasar.</p>
+                        <p class="text-3xl font-black text-emerald-600 mb-10 bg-ivory-100 inline-block px-6 py-2 rounded-2xl shadow-inner border border-emerald-100">Skor: ${state.scores.berlatih} / 5</p>
+                        <br>
+                        <button onclick="nav('screen-menu')" class="px-10 py-4 bg-emerald-600 text-white rounded-2xl font-bold shadow-xl hover:bg-emerald-700 hover:shadow-emerald-600/40 transition-all text-lg animate-pulse">Lanjut ke Menu Bermain</button>
+                    </div>
+                `;
+                updateDashboard();
+            }
+            else if (state.currentModule === 'bermain') {
+                document.getElementById('module-content').innerHTML = `
+                    <div class="text-center slide-up mt-10 glass-panel p-10 rounded-[2.5rem] shadow-xl max-w-2xl mx-auto border border-white/80">
+                        <div class="w-28 h-28 bg-ivory-100 border border-white shadow-sm text-gold-500 rounded-full flex items-center justify-center text-6xl mx-auto mb-6 backdrop-blur-sm floating"><i class="fas fa-trophy"></i></div>
+                        <h2 class="text-4xl font-extrabold text-emerald-900 mb-3">Hebat!</h2>
+                        <p class="text-gray-700 font-medium mb-4 text-lg">Kamu berhasil menyelesaikan tantangan literasi numerasi.</p>
+                        <p class="text-3xl font-black text-emerald-600 mb-10 bg-ivory-100 inline-block px-6 py-2 rounded-2xl shadow-inner border border-emerald-100">Skor: ${state.scores.bermain} / 10</p>
+                        <br>
+                        <button onclick="nav('screen-menu')" class="px-10 py-4 bg-emerald-600 text-white rounded-2xl font-bold shadow-xl hover:bg-emerald-700 hover:shadow-emerald-600/40 transition-all text-lg animate-pulse">Lanjut ke Asesmen</button>
+                    </div>
+                `;
+                updateDashboard();
+            }
+            else if (state.currentModule === 'asesmen') {
+                populateReport();
+                submitHasilToGAS(); // Trigger pengiriman data saat Asesmen selesai
+                nav('screen-report');
+                updateDashboard(); 
+            }
+        }
+
+        /* --- REPORT GENERATION --- */
+        function populateReport() {
+            document.getElementById('rep-name').textContent = state.user.name;
+            document.getElementById('rep-class').textContent = state.user.class;
+            
+            document.getElementById('rep-play-score').innerHTML = `${state.scores.bermain} <span class="text-base font-normal text-gray-500">/ 10</span>`;
+            
+            const totalScore = state.scores.asesmenTotal;
+            document.getElementById('rep-quiz-score').textContent = totalScore;
+            
+            let pred = "";
+            if(totalScore >= 90) pred = "/ 100 (Sangat Baik)";
+            else if(totalScore >= 75) pred = "/ 100 (Baik)";
+            else if(totalScore >= 60) pred = "/ 100 (Cukup)";
+            else pred = "/ 100 (Kurang)";
+            document.getElementById('rep-predicate').textContent = pred;
+
+            document.getElementById('rep-l1').textContent = `${state.scores.l1} dari 5 Soal Benar`;
+            document.getElementById('rep-l2').textContent = `${state.scores.l2} dari 5 Soal Benar`;
+            document.getElementById('rep-l3').textContent = `${state.scores.l3} dari 5 Soal Benar (HOTS)`;
+        }
+
+        function printReport() {
+            const element = document.getElementById('report-content');
+            const opt = {
+                margin:       10,
+                filename:     `Laporan_MPI_${state.user.name.replace(/\s+/g, '_')}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            if (typeof html2pdf !== 'undefined') {
+                html2pdf().set(opt).from(element).save();
+            } else {
+                window.print();
+            }
+        }
+
+    </script>
+</body>
+</html>
